@@ -11,6 +11,10 @@ require_once "../function/connect.php";
 	$template = new Savant3();
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
 
+	$template->content = "บริษัท แฮฟ อะ กูด ไทม แทรเวล จำกัด มีความยินดีในการให้บริการและอำนวยความสะดวกให้กับทุกท่าน หากพบปัญหาต้องการความช่วยหรือหรือร้องเรียนสามารถติดต่อได้ตามช่องทางด้านล่าง";
+	$template->address = "1481 Creekside Lane Avila Beach, CA 931";
+	$template->tel = "088-647-7217";
+	$template->email = "himehgttour@gmail.com";
 
 	$template->display($render);
 ?>

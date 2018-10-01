@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Travello</title>
+<title>About</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travello template project">
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="about_image"><img src="../images/about_1.jpg" alt=""></div>
+					<div class="about_image" ><img  src="../img/dbd.png" alt="" style="height:600px;"></div>
 				</div>
 			</div>
 		</div>
@@ -120,8 +120,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
-					<div class="section_subtitle">simply amazing places</div>
-					<div class="section_title"><h2>Why choose us?</h2></div>
+					<div class="section_subtitle">สถานที่ธรรมดาที่มหัศจรรย์</div>
+					<div class="section_title"><h2>ทำไมคุณควรเลือกเรา</h2></div>
 				</div>
 			</div>
 			<div class="row why_row">
@@ -136,7 +136,7 @@
 							</div>
 						</div>
 						<div class="why_content text-center">
-							<div class="why_title">Fast Services</div>
+							<div class="why_title">การบริการที่รวดเร็ว</div>
 							<div class="why_text">
 								<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo.</p>
 							</div>
@@ -154,7 +154,7 @@
 							</div>
 						</div>
 						<div class="why_content text-center">
-							<div class="why_title">Great Team</div>
+							<div class="why_title">ทีมงานที่ดีมีคุณภาพ</div>
 							<div class="why_text">
 								<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo.</p>
 							</div>
@@ -172,7 +172,7 @@
 							</div>
 						</div>
 						<div class="why_content text-center">
-							<div class="why_title">Best Deals</div>
+							<div class="why_title">ดีลที่ยอดเยี่ยมที่สุด</div>
 							<div class="why_text">
 								<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo.</p>
 							</div>

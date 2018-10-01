@@ -46,23 +46,23 @@
 				<!-- Get in touch -->
 				<div class="col-lg-6">
 					<div class="contact_content">
-						<div class="contact_title">Get in touch with us</div>
+						<div class="contact_title">ช่องทางการติดต่อพวกเรา</div>
 						<div class="contact_text">
-							<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo. Vivamus massa.Tempor massa et laoreet. Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo. Vivamus massa.</p>
+							<p><?= $this->content ?> </p>
 						</div>
 						<div class="contact_list">
 							<ul>
 								<li>
-									<div>address:</div>
-									<div>1481 Creekside Lane Avila Beach, CA 931</div>
+									<div>ที่อยู่:</div>
+									<div><?= $this->address ?></div>
 								</li>
 								<li>
-									<div>phone:</div>
-									<div>+53 345 7953 32453</div>
+									<div>เบอร์โทรศัพท์:</div>
+									<div><?= $this->tel ?></div>
 								</li>
 								<li>
-									<div>email:</div>
-									<div>yourmail@gmail.com</div>
+									<div>อีเมล์:</div>
+									<div><?= $this->email ?></div>
 								</li>
 							</ul>
 						</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Travello</title>
+<title>Home</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travello template project">
@@ -91,7 +91,7 @@
 	
 
 	<!-- News -->
-	<?php include("news.php"); ?>
+	<?php //include("news.php"); ?>
 	
 
 	<!-- Footer -->
