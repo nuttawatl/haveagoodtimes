@@ -15,9 +15,13 @@
 <link rel="stylesheet" type="text/css" href="../styles/contact_responsive.css">
 <script src="../js/jquery-3.2.1.min.js"></script>
 
+
 <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.js"></script>
 <script src="../library/texteditor/tinymce/tinymce.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script>
 tinymce.init({
     selector: "textarea",theme: "modern",width: 680,height: 300,
@@ -69,43 +73,51 @@ tinymce.init({
 				<!-- Get in touch -->
 				<div class="col-lg-12">
 				<div align="center"><h2>เพิ่มรายการการท่องเที่ยว</h2></div>
-				<form>
+				<form action="./add.php?submit=true" method="post" >
 				<div class="form-group">
 					<label for="tilte">ชื่อรายการ</label>
-					<input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" >
-					<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+					<input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" value="<?=$_SESSION["title"]?>" />
+					<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--> <?=$_SESSION["title"]?>
 				</div>
 				<div class="form-group">
-					<label for="province">จังหวัด</label>
-					<input type="text" class="form-control" id="province" placeholder="จังหวัด">
+					<label for="provinces">จังหวัด</label>
+					<select id="provinces" name="provinces" id="provinces" class="form-control search_input search_input_1" required="required">
+									<option value="">จังหวัด</option>
+									<?php foreach ($this->listClass as $key => $val) { ?>
+									<option value="<?=$key ?>" <?php if($_SESSION["provinces"] != "" && $_SESSION["provinces"] == $key ) { echo("selected"); } ?> ><?= $val ?></option>
+									<?php } ?>
+					</select>
 				</div>
 				<div class="form-group">
-					<label for="startdate">วันที่เริ่ม</label>
-					<input type="text" class="form-control" id="startdate" placeholder="วันที่เริ่ม">
+					<label for="departure">วันที่เริ่ม</label>
+					<input type="text" class="form-control search_input search_input_2" name="departure" id="departure" placeholder="วันที่ออกเดินทาง" required="required"  value="<?=$_SESSION["departure"]?>" >
 				</div>
 				<div class="form-group">
-					<label for="enddate">วันที่สิ้นสุด</label>
-					<input type="text" class="form-control" id="enddate" placeholder="วันที่สิ้นสุด">
+					<label for="arrival">วันที่สิ้นสุด</label>
+					<input type="text" class="form-control search_input search_input_3" name="arrival" id="arrival" placeholder="วันที่สิ้นสุด" required="required" value="<?=$_SESSION["arrival"]?>">	
 				</div>
 				<div class="form-group">
 					<label for="cost">ค่าใช้จ่าย</label>
-					<input type="text" class="form-control" id="cost" placeholder="วันที่สิ้นสุด">
+					<input type="number" class="form-control" name="cost" id="cost" placeholder="ค่าใช้จ่าย(บาท)" required="required" value="<?=$_SESSION["cost"]?>">
 				</div>
 				<div class="form-group">
 					<label for="img_title">รูปภาพเล็ก</label>
-					<input type="text" class="form-control" id="img_title" placeholder="รูปภาพเล็ก">
+					<input type="file" class="form-control" name="img_title" id="img_title" placeholder="รูปภาพเล็ก">
 				</div>
 				<div class="form-group">
 					<label for="img_banner">รูปภาพ Banner</label>
-					<input type="text" class="form-control" id="img_banner" placeholder="รูปภาพ Banner">
+					<input type="file" class="form-control" name="img_banner" id="img_banner" placeholder="รูปภาพ Banner">
 				</div>
 				<div class="form-group">
 					<label for="status">สถานะ</label>
-					<input type="text" class="form-control" id="status" placeholder="status">
+					<select id="status" name="status" id="status" class="form-control search_input search_input_1" required="required">
+					<option value="A" selected>ใช้งาน</option>
+					<option value="C" >ไม่ใช้งาน</option>
+					</select>
 				</div>
 
 				
-				<textarea name="sss"></textarea>
+				<textarea name="texteditor"></textarea>
 
 				
 				<button type="submit" class="btn btn-primary">Submit</button>
@@ -136,6 +148,79 @@ $(document).ready( function () {
 	$("#back").click(function(){
 		window.location.href="../admin/";
 	})
+	$('#departure').datepicker({
+				dateFormat: 'dd/mm/yy',
+				changeMonth: true,
+				changeYear: true, 
+				beforeShow: function () { 
+					var tmp = $('#departure').val();
+					if(tmp != "") {
+						var d = tmp.substr(0,2);
+						var m = tmp.substr(3,2);
+						var y = parseInt(tmp.substr(6,4))-543;
+						
+						$('#departure').val(d+"/"+m+"/"+y);
+					}
+				},
+				onSelect: function (dateText, inst) {
+					var d = dateText.substr(0,2);
+					var m = dateText.substr(3,2);
+					var y = parseInt(dateText.substr(6,4))+543;
+					$('#departure').val(d+"/"+m+"/"+y);
+				},
+				onClose: function(dateTime){
+					
+					if(dateTime != "") {
+						var d = dateTime.substr(0,2);
+						var m = dateTime.substr(3,2);
+						var y = parseInt(dateTime.substr(6,4));
+						if(y < 2100){
+							y= y+543 ;
+						}
+						else if(y > 2700){
+							y = y-543;
+						}
+						$('#departure').val(d+"/"+m+"/"+y);
+					}
+				}
+    });
+
+	$('#arrival').datepicker({
+				dateFormat: 'dd/mm/yy',
+				changeMonth: true,
+				changeYear: true, 
+				beforeShow: function () { 
+					var tmp = $('#arrival').val();
+					if(tmp != "") {
+						var d = tmp.substr(0,2);
+						var m = tmp.substr(3,2);
+						var y = parseInt(tmp.substr(6,4))-543;
+						
+						$('#arrival').val(d+"/"+m+"/"+y);
+					}
+				},
+				onSelect: function (dateText, inst) {
+					var d = dateText.substr(0,2);
+					var m = dateText.substr(3,2);
+					var y = parseInt(dateText.substr(6,4))+543;
+					$('#arrival').val(d+"/"+m+"/"+y);
+				},
+				onClose: function(dateTime){
+					
+					if(dateTime != "") {
+						var d = dateTime.substr(0,2);
+						var m = dateTime.substr(3,2);
+						var y = parseInt(dateTime.substr(6,4));
+						if(y < 2100){
+							y= y+543 ;
+						}
+						else if(y > 2700){
+							y = y-543;
+						}
+						$('#arrival').val(d+"/"+m+"/"+y);
+					}
+				}
+    });
 } );
 </script>
 </body>

@@ -38,7 +38,7 @@
 								</select>
 								
 								<input type="text" class="search_input search_input_2" id="departure" placeholder="วันที่ออกเดินทาง" required="required" >
-								<input type="text" class="search_input search_input_3" id="arrival" placeholder="วันที่ออกสิ้นสุด" required="required">
+								<input type="text" class="search_input search_input_3" id="arrival" placeholder="วันที่สิ้นสุด" required="required">
 								<input type="text" class="search_input search_input_4" placeholder="Budget" required="required">
 								<button class="home_search_button" >search</button>
 								
