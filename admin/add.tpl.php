@@ -73,11 +73,11 @@ tinymce.init({
 				<!-- Get in touch -->
 				<div class="col-lg-12">
 				<div align="center"><h2>เพิ่มรายการการท่องเที่ยว</h2></div>
-				<form action="./add.php?submit=true" method="post" >
+				<form action="./add.php?submit=true" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="tilte">ชื่อรายการ</label>
 					<input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" value="<?=$_SESSION["title"]?>" />
-					<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--> <?=$_SESSION["title"]?>
+					<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
 				</div>
 				<div class="form-group">
 					<label for="provinces">จังหวัด</label>
@@ -117,7 +117,7 @@ tinymce.init({
 				</div>
 
 				
-				<textarea name="texteditor"></textarea>
+				<textarea name="texteditor" ><?=$_SESSION["texteditor"]?></textarea>
 
 				
 				<button type="submit" class="btn btn-primary">Submit</button>
