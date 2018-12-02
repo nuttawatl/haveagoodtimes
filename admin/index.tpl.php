@@ -51,84 +51,43 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>title</th>
+							<th>หัวข้อ</th>
+							
+							<th>วันเริ่มเดินทาง</th>
+							<th>วันสิ้นสุดการเดินทาง</th>
+							<th>ค่าใช้จ่าย</th>
+							<!--
 							<th>province_code</th>
-							<th>startdate</th>
-							<th>enddate</th>
-							<th>cost</th>
 							<th>img_title</th>
 							<th>img_banner</th>
-							<!--<th>lan</th>
+							<th>lan</th>
 							<th>lon</th>-->
-							<th>status</th>
-							<th>edit</th>
+							<th>สถานะ</th>
+							<th>แก้ไข</th>
 						</tr>
 					</thead>
 					<tbody>
+					<?php 
+						$limit = (count($this->id));
+						for ($i = 0; $i < $limit ; $i++) {
+					?>
 						<tr>
-							<td>1</td>
-							<td>NewZealand</td>
-							<td>11</td>
-							<td>11-12-2561</td>
-							<td>11-15-2561</td>
-							<td>2500</td>
-							<td>aaaa.jpg</td>
-							<td>ddd.jpg</td>
-							<td>1</td>
-							<td></td>
+							<td><?= ($this->id[$i]); ?></td>
+							<td><?= ($this->title[$i]); ?></td>
+							<td><?= ($this->departure[$i]); ?></td>
+							<td><?= ($this->arrival[$i]); ?></td>
+							<td><?= ($this->cost[$i]); ?></td>
+							<td><?= ($this->status[$i]); ?></td>
+							<td><input type="button" class="btn btn-warning" onclick="gotopage(<?=$this->id[$i] ?>)" value="Click"/></td> <!--src="add.php?id=<?=$this->id[$i] ?>" -->
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>NewZealand</td>
-							<td>11</td>
-							<td>11-12-2561</td>
-							<td>11-15-2561</td>
-							<td>3500</td>
-							<td>aaaa.jpg</td>
-							<td>ddd.jpg</td>
-							<td>1</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>NewZealand</td>
-							<td>11</td>
-							<td>11-12-2561</td>
-							<td>11-15-2561</td>
-							<td>800</td>
-							<td>aaaa.jpg</td>
-							<td>ddd.jpg</td>
-							<td>1</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>NewZealand</td>
-							<td>11</td>
-							<td>11-12-2561</td>
-							<td>11-15-2561</td>
-							<td>600</td>
-							<td>aaaa.jpg</td>
-							<td>ddd.jpg</td>
-							<td>1</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>NewZealand</td>
-							<td>11</td>
-							<td>11-12-2561</td>
-							<td>11-15-2561</td>
-							<td>900</td>
-							<td>aaaa.jpg</td>
-							<td>ddd.jpg</td>
-							<td>1</td>
-							<td></td>
-						</tr>
+					<?php
+						} 
+					?>
 					</tbody>
 				</table>
 				<input type="button" class="btn btn-success" id = "add" value="Add New" />
 				<input type="button" class="btn btn-danger" id = "del" value="Delete" />
+				<input type="button" class="btn btn-info" id = "HomePage" value="HomePage" />
 				</div>
 
 			
@@ -147,6 +106,10 @@
 <script src="../js/contact.js"></script>
 
 <script>
+function gotopage(id){
+	newUrl = "add.php?id="+id ;
+	window.location = newUrl;
+}
 $(document).ready( function () {
 	$('#table_id').DataTable();
 	
@@ -155,6 +118,9 @@ $(document).ready( function () {
 	})
 	$("#del").click(function(){
 		alert("sss");
+	})
+	$("#HomePage").click(function(){
+		window.location.href="../home/";
 	})
 } );
 </script>
