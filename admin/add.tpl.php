@@ -75,30 +75,30 @@ tinymce.init({
 				<div align="center"><h2>เพิ่มรายการการท่องเที่ยว</h2></div>
 				<form action="./add.php?submit=true" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="tilte">ชื่อรายการ</label>
-					<input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" value="<?=$_SESSION["title"]?>" />
-					<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+					<label for="tilte">ชื่อรายการ</label> 
+				
+					<input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" value="<?php if(isset( $_SESSION["title"])) { echo($_SESSION["title"]); }else{ ''; }?>" />
 				</div>
 				<div class="form-group">
 					<label for="provinces">จังหวัด</label>
 					<select id="provinces" name="provinces" id="provinces" class="form-control search_input search_input_1" required="required">
 									<option value="">จังหวัด</option>
 									<?php foreach ($this->listClass as $key => $val) { ?>
-									<option value="<?=$key ?>" <?php if($_SESSION["provinces"] != "" && $_SESSION["provinces"] == $key ) { echo("selected"); } ?> ><?= $val ?></option>
+									<option value="<?=$key ?>" <?php if(isset( $_SESSION["title"])) { if(($_SESSION["provinces"] != "") && ($_SESSION["provinces"] == $key)) { echo("selected"); } else{ ''; }}else{ '';} ?> ><?= $val ?></option>
 									<?php } ?>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="departure">วันที่เริ่ม</label>
-					<input type="text" class="form-control search_input search_input_2" name="departure" id="departure" placeholder="วันที่ออกเดินทาง" required="required"  value="<?=$_SESSION["departure"]?>" >
+					<input type="text" class="form-control search_input search_input_2" name="departure" id="departure" placeholder="วันที่ออกเดินทาง" required="required"  value="<?php if(isset( $_SESSION["departure"])){ echo($_SESSION["departure"]); }else{ '';}?>" />
 				</div>
 				<div class="form-group">
 					<label for="arrival">วันที่สิ้นสุด</label>
-					<input type="text" class="form-control search_input search_input_3" name="arrival" id="arrival" placeholder="วันที่สิ้นสุด" required="required" value="<?=$_SESSION["arrival"]?>">	
+					<input type="text" class="form-control search_input search_input_3" name="arrival" id="arrival" placeholder="วันที่สิ้นสุด" required="required" value="<?php if(isset( $_SESSION["arrival"])) { echo($_SESSION["arrival"]);}else { '';}?>" />
 				</div>
 				<div class="form-group">
 					<label for="cost">ค่าใช้จ่าย</label>
-					<input type="number" class="form-control" name="cost" id="cost" placeholder="ค่าใช้จ่าย(บาท)" required="required" value="<?=$_SESSION["cost"]?>">
+					<input type="number" class="form-control" name="cost" id="cost" placeholder="ค่าใช้จ่าย(บาท)" required="required" value="<?php if(isset( $_SESSION["cost"])) { echo($_SESSION["cost"]); }else { ''; }?>" />
 				</div>
 				<div class="form-group">
 					<label for="img_title">รูปภาพเล็ก</label>
@@ -115,9 +115,7 @@ tinymce.init({
 					<option value="C" >ไม่ใช้งาน</option>
 					</select>
 				</div>
-
-				
-				<textarea name="texteditor" ><?=$_SESSION["texteditor"]?></textarea>
+				<textarea name="texteditor" ><?php if(isset( $_SESSION["texteditor"])) { echo ($_SESSION["texteditor"]) ;} else { ''; } ?></textarea>
 
 				
 				<button type="submit" class="btn btn-primary">Submit</button>

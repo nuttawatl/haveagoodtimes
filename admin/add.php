@@ -38,7 +38,7 @@ require_once "../function/connect.php";
 	//Load ID
 
 	//
-
+	$_SESSION["db"]  = 	$db ;
 	if($process == "add"){
 		if(checkbeforesave() == true){
 			var_dump("1");
@@ -79,6 +79,7 @@ require_once "../function/connect.php";
 			if($check !== false) {
 				echo "File is an image - " . $check["mime"] . ".";
 				$uploadOk = 1;
+				
 			} else {
 				echo "File is not an image.";
 				$uploadOk = 0;
@@ -95,14 +96,16 @@ require_once "../function/connect.php";
 			} else {
 				if (move_uploaded_file($_FILES["".$input_name.""]["tmp_name"], $target_file)) {
 					echo "The file ". basename( $_FILES["".$input_name.""]["name"]). " has been uploaded.";
+					return $target_file ;
 				} else {
 					echo "Sorry, there was an error uploading your file.";
 				}
 			}
 		//}
 	}
-	
+
 	function checkbeforesave(){
+	$db = $_SESSION["db"];
 	try{
 		$title  	= isset( $_POST['title']) ? $_POST['title'] : '';
 		$provinces  = isset( $_POST['provinces']) ? $_POST['provinces'] : '';
@@ -131,9 +134,34 @@ require_once "../function/connect.php";
 		if($provinces == "" && $departure = "" && $arrival = ""  && $cost = "" && $img_title = "" && $img_banner = "" && $texteditor = "" ){
 			return false;
 		}else{
+			$img_title = uploadfiles("img_title");
+			$img_banner = uploadfiles("img_banner");
+			//var_dump($_SESSION["title"] );
+			//var_dump($_SESSION["provinces"]);
+			//var_dump($_SESSION["departure"]);
+			//var_dump($_SESSION["arrival"]);
+			//var_dump($_SESSION["cost"]);
+			//var_dump($img_title);
+			//var_dump($img_banner);
+			//var_dump($_SESSION["status"] );
+			//var_dump(htmlentities($_SESSION["texteditor"]) );
 
-			uploadfiles("img_title");
-			uploadfiles("img_banner");
+			$sql = " INSERT INTO `product` ";
+			$sql = $sql . " (`id`, `title`, `provincecode`, `detail`, `startdate`, `enddate`, `cost`, `img_title`, `img_banner`, `lat`, `lon`, `createdate`, `createby`, `updatedate`, `updateby`, `status`) " ;
+			$sql = $sql . "VALUES ( null , '".$_SESSION["title"]."' , '".$_SESSION["provinces"]."' , '".htmlentities($_SESSION["texteditor"])."', '".$_SESSION["departure"]."', '".$_SESSION["arrival"]."'  ,".$_SESSION["cost"]." ,'".$img_title."', '".$img_banner."', '-', '-', '2018-11-14 00:00:00', 'test', '2018-11-14 00:00:00', 'test', '1');";
+			//var_dump ($sql);
+			
+			$stmt = $db->Prepare($sql);
+			$rs = $db->Execute($stmt);
+			$last_id = "";
+			$last_id = $db->insert_Id();
+
+			if($last_id != "" ){
+				// redirect page view
+			}else{
+				// redirect old page
+			}
+
 			return true;
 		}
 	}
