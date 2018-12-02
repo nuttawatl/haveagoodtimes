@@ -76,7 +76,6 @@ require_once "../function/connect.php";
 
 	}
 	//
-<<<<<<< HEAD
 	
 	if($id != ""){
 		$process = "update" ;
@@ -85,9 +84,6 @@ require_once "../function/connect.php";
 	$_SESSION["db"]  = 	$db ;
 	if($strAction == ""){}
 	else{
-=======
-	$_SESSION["db"]  = 	$db ;
->>>>>>> 193fa4e48f3bdcc0d86019470faca8e806988e06
 	if($process == "add"){
 		if(checkbeforesave($process) == true){
 			//echo "<script>alert(กรุณากรอกข้อมูลให้ครบถ้วน);</script>";
@@ -123,7 +119,6 @@ require_once "../function/connect.php";
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// Check if image file is a actual image or fake image
 		
-<<<<<<< HEAD
 		try{
 			if($_FILES["".$input_name.""]["tmp_name"] != ""){
 				$check = getimagesize($_FILES["".$input_name.""]["tmp_name"]);
@@ -148,31 +143,6 @@ require_once "../function/connect.php";
 				if ($uploadOk == 0) {
 				//echo "Sorry, your file was not uploaded.";
 				// if everything is ok, try to upload file
-=======
-		//if(isset($_POST["submit"])) {
-			$check = getimagesize($_FILES["".$input_name.""]["tmp_name"]);
-			if($check !== false) {
-				echo "File is an image - " . $check["mime"] . ".";
-				$uploadOk = 1;
-				
-			} else {
-				echo "File is not an image.";
-				$uploadOk = 0;
-			}
-			// Check if file already exists
-			if (file_exists($target_file)) {
-				//echo "Sorry, file already exists.";
-				$uploadOk = 0;
-			}
-
-			if ($uploadOk == 0) {
-			//echo "Sorry, your file was not uploaded.";
-			// if everything is ok, try to upload file
-			} else {
-				if (move_uploaded_file($_FILES["".$input_name.""]["tmp_name"], $target_file)) {
-					echo "The file ". basename( $_FILES["".$input_name.""]["name"]). " has been uploaded.";
-					return $target_file ;
->>>>>>> 193fa4e48f3bdcc0d86019470faca8e806988e06
 				} else {
 					if (move_uploaded_file($_FILES["".$input_name.""]["tmp_name"], $target_file)) {
 						//echo "The file ". basename( $_FILES["".$input_name.""]["name"]). " has been uploaded.";
@@ -190,11 +160,7 @@ require_once "../function/connect.php";
 		//}
 	}
 
-<<<<<<< HEAD
 	function checkbeforesave($process){
-=======
-	function checkbeforesave(){
->>>>>>> 193fa4e48f3bdcc0d86019470faca8e806988e06
 	$db = $_SESSION["db"];
 	try{
 		$title  	= isset( $_POST['title']) ? $_POST['title'] : '';
@@ -231,17 +197,12 @@ require_once "../function/connect.php";
 		if($chk == "0" ){
 			return false;
 		}else{
-<<<<<<< HEAD
 			//var_dump(dateswapplus($arrival));
 	
 			//var_dump($_SESSION["departure"]);
 			//var_dump($time);
 			//var_dump($newformat);
 			
-=======
-			$img_title = uploadfiles("img_title");
-			$img_banner = uploadfiles("img_banner");
->>>>>>> 193fa4e48f3bdcc0d86019470faca8e806988e06
 			//var_dump($_SESSION["title"] );
 			//var_dump($_SESSION["provinces"]);
 			//var_dump($_SESSION["departure"]);
@@ -251,7 +212,6 @@ require_once "../function/connect.php";
 			//var_dump($img_banner);
 			//var_dump($_SESSION["status"] );
 			//var_dump(htmlentities($_SESSION["texteditor"]) );
-<<<<<<< HEAD
 			//var_dump($_SESSION["departure"]);
 			//var_dump(dateswapminus($_SESSION["departure"]));
 			//var_dump($process);
@@ -314,23 +274,6 @@ require_once "../function/connect.php";
 				// redirect old page
 				$thispage = str_replace($_SERVER['REQUEST_URI'],"/haveagoodtimes/admin/","");
 				echo "<script>location.href='".$thispage."';</script>";
-=======
-
-			$sql = " INSERT INTO `product` ";
-			$sql = $sql . " (`id`, `title`, `provincecode`, `detail`, `startdate`, `enddate`, `cost`, `img_title`, `img_banner`, `lat`, `lon`, `createdate`, `createby`, `updatedate`, `updateby`, `status`) " ;
-			$sql = $sql . "VALUES ( null , '".$_SESSION["title"]."' , '".$_SESSION["provinces"]."' , '".htmlentities($_SESSION["texteditor"])."', '".$_SESSION["departure"]."', '".$_SESSION["arrival"]."'  ,".$_SESSION["cost"]." ,'".$img_title."', '".$img_banner."', '-', '-', '2018-11-14 00:00:00', 'test', '2018-11-14 00:00:00', 'test', '1');";
-			//var_dump ($sql);
-			
-			$stmt = $db->Prepare($sql);
-			$rs = $db->Execute($stmt);
-			$last_id = "";
-			$last_id = $db->insert_Id();
-
-			if($last_id != "" ){
-				// redirect page view
-			}else{
-				// redirect old page
->>>>>>> 193fa4e48f3bdcc0d86019470faca8e806988e06
 			}
 
 			return true;

@@ -11,7 +11,7 @@ require_once "../function/connect.php";
 	$template = new Savant3();
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
 
-	$sql = "SELECT * FROM `product`  ORDER BY  CAST(id AS int)   ASC "; //where status != '0'
+	$sql = "SELECT * FROM `product`  ORDER BY id ASC "; //where status != '0'
 	$db->setFetchMode(ADODB_FETCH_ASSOC);
 	$stmt = $db->Prepare($sql);
 	$rs = $db->Execute($stmt);
@@ -23,24 +23,27 @@ require_once "../function/connect.php";
 	$cost = [];
 	$status = [];
 	$i = 0 ;
-	foreach ($rs as $row) 
-	{
-		$id[$i] = $row["id"];
-		$title[$i] = $row["title"] ;
-		$departure[$i] = $row["startdate"] ;
-		$arrival[$i] = $row["enddate"];
-		$cost[$i] = $row["cost"];
-		if($row["status"] == "1"){
-			$status[$i] = "ใช้งาน";
-		}else{
-			$status[$i] = "ยกเลิก";
-		}
-		$i++;
 
-		//$row["provinces"] ;
-		//$row["img_title"] ;
-		//$row["img_banner"] ;
-		//$row["texteditor"];
+	if ($rs != "") {
+		foreach ($rs as $row) 
+		{
+			$id[$i] = $row["id"];
+			$title[$i] = $row["title"] ;
+			$departure[$i] = $row["startdate"] ;
+			$arrival[$i] = $row["enddate"];
+			$cost[$i] = $row["cost"];
+			if($row["status"] == "1"){
+				$status[$i] = "ใช้งาน";
+			}else{
+				$status[$i] = "ยกเลิก";
+			}
+			$i++;
+
+			//$row["provinces"] ;
+			//$row["img_title"] ;
+			//$row["img_banner"] ;
+			//$row["texteditor"];
+		}
 	}
 	$template->id = $id;
 	$template->title = $title;
