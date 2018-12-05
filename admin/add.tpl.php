@@ -51,12 +51,12 @@ tinymce.init({
 	<!-- Header -->
 
 	<header class="header">
-		<?php //include "../inc/menu_admin.php";?>
+		<?php include "../inc/menu_admin.php";?>
 	</header>
 
 	<!-- Menu -->
 	<div class="menu">
-		<?php //include "../inc/hamburger_menu_admin.php";?>
+		<?php include "../inc/hamburger_menu_admin.php";?>
 	</div>
 	<!-- Home -->
 

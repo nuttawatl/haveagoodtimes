@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 if($process == "add"){
     if(checkbeforesave() == true){
 
@@ -33,18 +29,6 @@ catch (Exception $e){
 }
     return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

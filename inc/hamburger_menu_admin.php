@@ -7,15 +7,21 @@
 		</div>
 		<div class="menu_content">
 			<ul>
-				<li><a href="../admin/"    <?php if($active == "1") {?> style="color:#b5b508 ;" <?php } ?>>หน้าหลัก</a></li>
-				<li><a href="../about/"   <?php if($active == "2") {?> style="color:#b5b508 ;" <?php } ?>>เพิ่มรายการ</a></li>
-				<li><a href="#"           <?php if($active == "3") {?> style="color:#b5b508 ;" <?php } ?>>การบริการ</a></li>
-				<li><a href="../news/"    <?php if($active == "4") {?> style="color:#b5b508 ;" <?php } ?>>ข่าวสารฯ</a></li>
-				<li><a href="../contact/" <?php if($active == "5") {?> style="color:#b5b508 ;" <?php } ?>>ติดต่อเรา</a></li>
+				<li><a href="../admin/"    <?php if($active == "1") {?> style="color:#b5b508 ;" <?php } ?>>หน้าจัดการรายการ</a></li>
+				<li><a href="../admin/sendnews.php" <?php if($active == "2") {?> style="color:#b5b508 ;" <?php } ?>>หน้าส่งข่าวสาร</a></li>
+				<li><a href="./admin/user.php"  <?php if($active == "3") {?> style="color:#b5b508 ;" <?php } ?>>สมาชิกในระบบ</a></li>
+				<?php
+					if($_SESSION["authen"] != "Y"){ ?>
+					<li <?php if($active == "6") {?> class="active" <?php } ?>><a href="../home/login.php">เข้าสู่ระบบ</a></li>
+				<?php 
+					}
+				else{ ?>
+					<li><a href="../home/logout.php"><font color="#e6e600">[<?php echo($_SESSION["name"])?>]</font>-ออกจากระบบ</a></li>
+				<?php } ?>
 			</ul>
 		</div>
 		<div class="menu_social">
-			<div class="menu_phone ml-auto"><img src="../img/call.png"/> โทร 088 647 7217</div>
+			<!--<div class="menu_phone ml-auto"><img src="../img/call.png"/> โทร 088 647 7217</div>-->
 			<ul class="d-flex flex-row align-items-start justify-content-start">
 				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>

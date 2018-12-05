@@ -9,10 +9,10 @@
 							<div class="newsletter_subtitle">Join our database NOW!</div>
 						</div>
 						<div class="newsletter_form_container">
-							<form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+							<form action="../inc/subscribeprocess.php" method="post" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
 								<div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
-									<div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Name" required="required"><div class="input_border"></div></div>
-									<div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Your e-mail" required="required"><div class="input_border"></div></div>
+									<div><input type="text" class="newsletter_input newsletter_input_name" id="name" name="name" placeholder="Name" required="required"><div class="input_border"></div></div>
+									<div><input type="email" class="newsletter_input newsletter_input_email" id="email" name="email" placeholder="Your e-mail" required="required"><div class="input_border"></div></div>
 								</div>
 								<div><button class="newsletter_button">subscribe</button></div>
 							</form>

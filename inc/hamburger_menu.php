@@ -9,9 +9,20 @@
 			<ul>
 				<li><a href="../home/"    <?php if($active == "1") {?> style="color:#b5b508 ;" <?php } ?>>หน้าหลัก</a></li>
 				<li><a href="../about/"   <?php if($active == "2") {?> style="color:#b5b508 ;" <?php } ?>>เกี่ยวกับเรา</a></li>
-				<li><a href="#"           <?php if($active == "3") {?> style="color:#b5b508 ;" <?php } ?>>การบริการ</a></li>
+				<li><a href="../service/"           <?php if($active == "3") {?> style="color:#b5b508 ;" <?php } ?>>การบริการ</a></li>
 				<li><a href="../news/"    <?php if($active == "4") {?> style="color:#b5b508 ;" <?php } ?>>ข่าวสารฯ</a></li>
 				<li><a href="../contact/" <?php if($active == "5") {?> style="color:#b5b508 ;" <?php } ?>>ติดต่อเรา</a></li>
+				
+				<?php
+				$_SESSION["authen"]	= isset( $_SESSION["authen"]) ?$_SESSION["authen"] : 'N';
+				if($_SESSION["authen"] != "Y"){ ?>
+				<li><a href="../home/login.php" <?php if($active == "6") {?> style="color:#b5b508 ;" <?php } ?>>เข้าสู่ระบบ</a></li>
+				<?php 
+				}
+				else{ ?>
+				<li><a href="../home/logout.php"><font color="#e6e600">[<?php echo($_SESSION["name"])?>]</font>-ออกจากระบบ</a></li>
+				<?php }
+				?>
 			</ul>
 		</div>
 		<div class="menu_social">

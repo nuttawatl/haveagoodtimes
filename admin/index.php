@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../library/Savant3.php";
 require_once "../library/adodb5/adodb.inc.php";
 require_once "../library/adodb5/adodb-active-record.inc.php";
