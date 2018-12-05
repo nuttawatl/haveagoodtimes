@@ -140,7 +140,8 @@
 			</div>
 		</div>
 	</div>
-
+	<!--BOT -->
+	<?php include("../inc/chatbot.php"); ?>
 	<!-- Footer -->
 	<?php include("../inc/footer.php"); ?>
 </div>

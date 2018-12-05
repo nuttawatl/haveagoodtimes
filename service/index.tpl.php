@@ -124,7 +124,8 @@
 	<!-- News -->
 	<?php //include("news.php"); ?>
 	
-
+	<!--BOT -->
+	<?php include("../inc/chatbot.php"); ?>
 	<!-- Footer -->
 	<?php include("../inc/footer.php"); ?>
 
