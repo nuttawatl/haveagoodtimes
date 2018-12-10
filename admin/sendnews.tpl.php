@@ -102,15 +102,10 @@ function gotopage(id){
 $(document).ready( function () {
 	$('#table_id').DataTable();
 	
-	$("#add").click(function(){
-		window.location.href="../admin/add.php";
+	$("#sendnews").click(function(){
+		window.location.href="../admin/sendnewsform.php";
 	})
-	$("#del").click(function(){
-		alert("sss");
-	})
-	$("#HomePage").click(function(){
-		window.location.href="../home/";
-	})
+	
 } );
 </script>
 </body>

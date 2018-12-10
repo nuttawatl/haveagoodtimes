@@ -7,11 +7,11 @@ $port = "3306";
 $dbuser = "root";
 $dbpassword = "";*/
 
-$dbname = "sql12267986";
-$host = "sql12.freemysqlhosting.net";
+$dbname = "id8101182_travel";//"sql12267986";
+$host = "localhost";//"sql12.freemysqlhosting.net";
 $port = "3306";
-$dbuser = "sql12267986";
-$dbpassword = "TnZY1tI6me";
+$dbuser = "id8101182_admin";//"sql12267986";
+$dbpassword = "admin";//"TnZY1tI6me";
 
 $utf8 = true;
 $debug = false; // default is false

@@ -72,61 +72,25 @@ tinymce.init({
 
 				<!-- Get in touch -->
 				<div class="col-lg-12">
-				<div align="center"><h2>เพิ่มรายการการท่องเที่ยว</h2></div>
+				<div align="center"><h2>แบบฟอร์มข่าวสาร</h2></div>
 
-				<?php 
-					$url = "./add.php?id=";
-					if(isset($_SESSION["id"])){
-						$url = $url.$_SESSION["id"] ;
-					}
-				?>
-				<form action="<?php echo($url) ?>&submit=true" method="post" enctype="multipart/form-data">
+				<form action="sendnewsprocess.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="tilte">ชื่อรายการ</label> 
 				
-					<input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" placeholder="ชื่อรายการ" value="<?php if(isset( $_SESSION["title"])) { echo($_SESSION["title"]); }else{ ''; }?>" />
+					<input type="text" class="form-control" name="subject" id="subject" aria-describedby="titleHelp" placeholder="ชื่อเรื่อง" value="" required="required" />
+				</div>
+				
+				<div class="form-group">
+					<label for="departure">อีเมล์ผู้ส่ง</label>
+					<input type="text" class="form-control" name="email_sender" id="email_sender" placeholder="อีเมล์ผู้ส่ง" required="required"  value="" />
 				</div>
 				<div class="form-group">
-					<label for="provinces">จังหวัด</label>
-					<select id="provinces" name="provinces" id="provinces" class="form-control search_input search_input_1" required="required">
-									<option value="">จังหวัด</option>
-									<?php foreach ($this->listClass as $key => $val) { ?>
-									<option value="<?=$key ?>" <?php if(isset( $_SESSION["title"])) { if(($_SESSION["provinces"] != "") && ($_SESSION["provinces"] == $key)) { echo("selected"); } else{ ''; }}else{ '';} ?> ><?= $val ?></option>
-									<?php } ?>
-					</select>
+					<label for="arrival">ชื่อผู้ส่ง</label>
+					<input type="text" class="form-control" name="sender" id="sender" placeholder="ชื่อผู้ส่ง" required="required" value="" />
 				</div>
-				<div class="form-group">
-					<label for="departure">วันที่เริ่ม</label>
-					<input type="text" class="form-control search_input search_input_2" name="departure" id="departure" placeholder="วันที่ออกเดินทาง" required="required"  value="<?php if(isset( $_SESSION["departure"])){ echo($_SESSION["departure"]); }else{ '';}?>" />
-				</div>
-				<div class="form-group">
-					<label for="arrival">วันที่สิ้นสุด</label>
-					<input type="text" class="form-control search_input search_input_3" name="arrival" id="arrival" placeholder="วันที่สิ้นสุด" required="required" value="<?php if(isset( $_SESSION["arrival"])) { echo($_SESSION["arrival"]);}else { '';}?>" />
-				</div>
-				<div class="form-group">
-					<label for="cost">ค่าใช้จ่าย</label>
-					<input type="number" class="form-control" name="cost" id="cost" placeholder="ค่าใช้จ่าย(บาท)" required="required" value="<?php if(isset( $_SESSION["cost"])) { echo($_SESSION["cost"]); }else { ''; }?>" />
-				</div>
-			
-				<div class="form-group">
-					<label for="img_title">รูปภาพเล็ก</label>
-					<input type="file" class="form-control" name="img_title" id="img_title" placeholder="รูปภาพเล็ก">
-					<img src="<?php if(isset( $_SESSION["img_title"])) { echo ($_SESSION["img_title"]) ;} else { ''; } ?>" width="250px"/>
-				    
-				</div>
-				<div class="form-group">
-					<label for="img_banner">รูปภาพ Banner</label>
-					<input type="file" class="form-control" name="img_banner" id="img_banner" placeholder="รูปภาพ Banner">
-					<img src="<?php if(isset( $_SESSION["img_banner"])) { echo ($_SESSION["img_banner"]) ;} else { ''; } ?>" width="250px"/>
-				</div>
-				<div class="form-group">
-					<label for="status">สถานะ </label>
-					<select id="status" name="status" id="status" class="form-control search_input search_input_1" required="required">
-					<option value="A" selected>ใช้งาน</option>
-					<option value="C" >ไม่ใช้งาน</option>
-					</select>
-				</div>
-				<textarea name="texteditor" ><?php if(isset( $_SESSION["texteditor"])) { echo ($_SESSION["texteditor"]) ;} else { ''; } ?></textarea>
+				
+				<textarea name="message" ></textarea>
 
 				
 				<button type="submit" class="btn btn-primary">Submit</button>
@@ -155,7 +119,7 @@ tinymce.init({
 <script>
 $(document).ready( function () {
 	$("#back").click(function(){
-		window.location.href="../admin/";
+		window.location.href="../admin/sendnews.php";
 	})
 	$('#departure').datepicker({
 				dateFormat: 'dd/mm/yy',

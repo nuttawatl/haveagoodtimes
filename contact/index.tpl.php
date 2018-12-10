@@ -51,12 +51,16 @@
 								
 								<select id="provinces" name="provinces" class="search_input search_input_1" required="required">
 									<option value="">จังหวัด</option>
+
+
 									<?php 
 										for ($i = 0; $i < $this->limit ; $i++) {
 									?>
 									<option value="<?=$this->id[$i] ?>"><?= $this->name[$i] ?></option>
 									
 									<?php } // foreach ?> 
+
+									
 								</select>
 								
 								<input type="text" class="search_input search_input_2" id="departure" name="departure" placeholder="วันที่ออกเดินทาง" required="required" >
@@ -107,17 +111,17 @@
 				<!-- Contact Form -->
 				<div class="col-lg-6">
 					<div class="contact_form_container">
-						<form action="#" id="contact_form" class="contact_form">
-							<div style="margin-bottom: 18px"><input type="text" class="contact_input contact_input_name inpt" placeholder="Your Name" required="required"><div class="input_border"></div></div>
+						<form action="contactprocess.php" method="post"  id="contact_form" class="contact_form">
+							<div style="margin-bottom: 18px"><input type="text" class="contact_input contact_input_name inpt" name="sender" placeholder="Your Name" required="required"><div class="input_border"></div></div>
 							<div class="row">
 								<div class="col-lg-6" style="margin-bottom: 18px">
-									<div><input type="text" class="contact_input contact_input_email inpt" placeholder="Your E-mail" required="required"><div class="input_border"></div></div>
+									<div><input type="text" class="contact_input contact_input_email inpt" name="email" placeholder="Your E-mail" required="required"><div class="input_border"></div></div>
 								</div>
 								<div class="col-lg-6" style="margin-bottom: 18px">
-									<div><input type="text" class="contact_input contact_input_subject inpt" placeholder="Subject" required="required"><div class="input_border"></div></div>
+									<div><input type="text" class="contact_input contact_input_subject inpt" name="subject" placeholder="Subject" required="required"><div class="input_border"></div></div>
 								</div>
 							</div>
-							<div><textarea class="contact_textarea contact_input inpt" placeholder="Message" required="required"></textarea><div class="input_border" style="bottom:3px"></div></div>
+							<div><textarea class="contact_textarea contact_input inpt" name="message" placeholder="Message" required="required"></textarea><div class="input_border" style="bottom:3px"></div></div>
 							<button class="contact_button">send</button>
 						</form>
 					</div>
