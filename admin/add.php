@@ -197,34 +197,24 @@ require_once "../function/connect.php";
 		if($chk == "0" ){
 			return false;
 		}else{
-			//var_dump(dateswapplus($arrival));
-	
-			//var_dump($_SESSION["departure"]);
-			//var_dump($time);
-			//var_dump($newformat);
 			
-			//var_dump($_SESSION["title"] );
-			//var_dump($_SESSION["provinces"]);
-			//var_dump($_SESSION["departure"]);
-			//var_dump($_SESSION["arrival"]);
-			//var_dump($_SESSION["cost"]);
-			//var_dump($img_title);
-			//var_dump($img_banner);
-			//var_dump($_SESSION["status"] );
-			//var_dump(htmlentities($_SESSION["texteditor"]) );
-			//var_dump($_SESSION["departure"]);
-			//var_dump(dateswapminus($_SESSION["departure"]));
-			//var_dump($process);
-			
-			
+			$createddate = date("Y-m-d");
+			$updatedate = date("Y-m-d");
+			if($_SESSION["name"] != ""){
+				$updateby = $_SESSION["name"] ;
+			}else{
+				$updateby = "sys" ;
+			}
+
 			if($process == "add")
 			{
+
 			$img_title = uploadfiles("img_title");
 			$img_banner = uploadfiles("img_banner");
 
 			$sql = " INSERT INTO `product` ";
 			$sql = $sql . " (`id`, `title`, `provincecode`, `detail`, `startdate`, `enddate`, `cost`, `img_title`, `img_banner`, `lat`, `lon`, `createdate`, `createby`, `updatedate`, `updateby`, `status`) " ;
-			$sql = $sql . "VALUES ( null , '".$_SESSION["title"]."' , '".$_SESSION["provinces"]."' , '".htmlentities($_SESSION["texteditor"])."', '".dateswapminus($_SESSION["departure"])."', '".dateswapminus($_SESSION["arrival"])."'  ,".$_SESSION["cost"]." ,'".$img_title."', '".$img_banner."', '-', '-', '2018-11-14 00:00:00', 'test', '2018-11-14 00:00:00', 'test', '1');";
+			$sql = $sql . "VALUES ( null , '".$_SESSION["title"]."' , '".$_SESSION["provinces"]."' , '".htmlentities($_SESSION["texteditor"])."', '".dateswapminus($_SESSION["departure"])."', '".dateswapminus($_SESSION["arrival"])."'  ,".$_SESSION["cost"]." ,'".$img_title."', '".$img_banner."', '-', '-', ".$createddate.", '".$updateby."', ".$updatedate.", '".$updateby."', '".$_SESSION["status"]."' );";
 			}
 			else{
 			$sql = " UPDATE  `product` SET ";
@@ -234,9 +224,9 @@ require_once "../function/connect.php";
 			$sql = $sql . " startdate = '".dateswapminus($_SESSION["departure"])."', " ;
 			$sql = $sql . " enddate = '".dateswapminus($_SESSION["arrival"])."', " ;
 			$sql = $sql . " cost = ".$_SESSION["cost"].", " ;
-			$sql = $sql . " updatedate = '2018-11-14 00:00:00', " ;
-			$sql = $sql . " updateby = 'test', " ;
-			$sql = $sql . " status = '1'  " ;
+			$sql = $sql . " updatedate = ".$createddate.", " ;
+			$sql = $sql . " updateby = '".$updateby."' , " ;
+			$sql = $sql . " status = '".$_SESSION["status"]."'  " ;
 
 			if($_FILES["img_title"]["tmp_name"] != ""){	
 			$img_title = uploadfiles("img_title");			
@@ -254,6 +244,8 @@ require_once "../function/connect.php";
 
 			}
 
+			var_dump($sql) ;
+			exit();
 			$stmt = $db->Prepare($sql);
 			$rs = $db->Execute($stmt);
 			$last_id = "";
